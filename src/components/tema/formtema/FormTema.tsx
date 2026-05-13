@@ -4,6 +4,7 @@ import type Tema from "../../../models/Tema";
 import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { Bounce, toast } from "react-toastify";
 
 
 
@@ -35,7 +36,17 @@ function FormTema() {
 
     useEffect(()=>{
         if(token ===''){
-            alert('Precisa esta logado MEU!')
+            toast.error('Você precisa estar logado!', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
             navigate('/')
         }
     },[token])
@@ -66,12 +77,32 @@ function FormTema() {
                 await atualizar(`temas`, tema, setTema,{
                     headers: {Authorization: token}
                 })
-                alert("O Tema foi atualizado com Sucesso!")
+                toast.success('Tema atualizado com sucesso!', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
             }catch (error:any){
                 if(error.toString().includes('401')){
                     handleLogout();
                 }else{
-                    alert("Erro ao atualizar o tema")
+                    toast.error('Erro ao atualizar o tema!', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
                 }
 
             }
@@ -80,12 +111,32 @@ function FormTema() {
                 await cadastrar(`temas`, tema, setTema,{
                     headers: {'Authorization':token}
                 })
-                alert("O tema foi cadastrado com sucesso!")
+                toast.success('Tema cadastrado com sucesso!', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
             }catch(error:any){
                 if(error.toString().includes('401')){
                     handleLogout();
                 }else{
-                    alert('Erro ao cadastrar temas.')
+                    toast.error('Erro ao cadastrar temas.', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
                 }
             }
         }

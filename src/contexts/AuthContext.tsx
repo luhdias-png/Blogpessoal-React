@@ -1,6 +1,7 @@
 import { createContext, useState, type ReactNode } from "react"
 import type UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
+import { Bounce, toast } from "react-toastify"
 
 
 interface AuthContextData {
@@ -38,10 +39,26 @@ export function AuthProvider({children} : AuthProviderProps) {
         setIsLoading(true)
         try {
             await login(`/usuarios/logar`, usuarioLogin, setUsuario)
-            alert("O Usuário foi autenticado com sucesso!")
-            console.log("Usuario Logado", usuario)
+            toast.success("Usuario logado com sucesso!",{
+                position:"top-right",
+                autoClose: 5000,
+                theme:"colored",
+                transition:Bounce
+            }
+                
+            )
         } catch (error) {
-            alert("Os Dados do usuário estão inconsistentes!")
+           toast.error('Erro ao logar usuário!', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+transition: Bounce,
+});
         }
         setIsLoading(false)
     }
