@@ -1,90 +1,79 @@
+import { useContext } from "react"
+import ListaPostagens from "../../components/postagem/listapostagens/Listapostagem"
+import ModalPostagem from "../../components/postagem/modalpostagem/ModalPostagem"
+import { AuthContext } from "../../contexts/AuthContext"
 
 function Home() {
-  return (
 
-    <>
-<div
-                style={{
-                    backgroundColor: "#312e81", 
-                    display: "flex",
-                    justifyContent: "center"
-                }}
->
-<div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr", 
-                        color: "white",
-                        width: "100%",
-                        maxWidth: "1280px", 
-                    }}
->
-<div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "1rem", 
-                            alignItems: "center",
-                            justifyContent: "center",
-                            paddingTop: "1rem", 
-                            paddingBottom: "1rem"
-                        }}
->
-<h2
-                            style={{
-                                fontSize: "3rem", 
-                                fontWeight: "bold"
-                            }}
->
-                            Seja Bem Vindo!
-</h2>
- 
-                        <p
-                            style={{
-                                fontSize: "1.25rem" 
-                            }}
->
-                            Expresse aqui seus pensamentos e opiniões
-</p>
- 
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-around",
-                                gap: "1rem"
-                            }}
->
-<div
-                                style={{
-                                    borderRadius: "0.5rem",
-                                    color: "white",
-                                    border: "2px solid white",
-                                    padding: "0.5rem 1rem"
-                                }}
->
-                                Nova Postagem
-</div>
-</div>
-</div>
- 
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
->
-<img
-                            src="https://i.imgur.com/fyfri1v.png"
-                            alt="Imagem Página Home"
-                            style={{
-                                width: "66%"
-                            }}
+    const { usuario } = useContext(AuthContext)
+
+
+    return (
+        <>
+            <div className="
+                bg-blue-300
+                flex justify-center
+                min-h-[6vh] w-full py-10
+            ">
+
+                <div className="
+                    container mx-auto px-4
+                    flex flex-col md:flex-row
+                    items-center justify-start
+                    gap-50
+                ">
+
+                    <div className="flex justify-start">
+                        <img
+                            src={usuario.foto || "https://i.imgur.com/HeIi0wU.png"}
+                            alt="Imagem usuario"
+                            className="
+                                w-40 sm:w-52 lg:w-72
+                                opacity-80
+                                drop-shadow-xl
+                                rounded-2xl
+                                border-r-b-5
+                            "
                         />
-</div>
-</div>
-</div>
-    </>
-  )
+                    </div>
+
+                    <div className="
+                        flex flex-col
+                        items-center
+                        justify-center
+                        gap-5
+                        text-center
+                        text-white
+                    ">
+
+
+                        <h2 className="
+                            text-3xl sm:text-4xl md:text-5xl
+                            font-bold
+                            drop-shadow-md
+                        ">
+                            Seja Bem Vindo! {usuario.nome.charAt(0).toUpperCase() + usuario.nome.slice(1)}
+                        </h2>
+
+                        <p className="
+                            text-base sm:text-lg md:text-xl
+                            text-white
+                        ">
+                            Expresse aqui seus pensamentos e opiniões
+                        </p>
+
+                        <div>
+                            <ModalPostagem />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <ListaPostagens />
+        </>
+    )
 }
 
 export default Home
