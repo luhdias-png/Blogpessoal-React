@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import logo from "../../assets/L&L.png"
 
 interface UsuarioLogin {
     id: number;
@@ -43,19 +44,22 @@ function Login() {
 
     return (
         <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold ">
-                <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col w-1/2 gap-4" >
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold bg-white">
+                <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col w-1/2 gap-4 rounded-2xl" >
                     <h2 className="text-slate-900 text-5xl ">Entrar</h2>
                     <div className="flex flex-col w-full">
-                        <label htmlFor="usuario">Usuário</label>
+                        <label htmlFor="usuario">Email</label>
                         <input
                             type="text"
                             id="usuario"
                             name="usuario"
                             value={usuarioLogin.usuario}
                             onChange={atualizarEstado}
-                            placeholder="Usuario"
-                            className="border-2 border-slate-700 rounded p-2"
+                            placeholder="email@email.com"
+                            className="border-2 border-slate-700 rounded p-2
+                            focus:outline-none
+                            focus:border-blue-400"
+                            
                         />
                     </div>
                     <div className="flex flex-col w-full">
@@ -67,13 +71,15 @@ function Login() {
                             value={usuarioLogin.senha}
                             onChange={atualizarEstado}
                             placeholder="Senha"
-                            className="border-2 border-slate-700 rounded p-2"
+                            className="border-2 border-slate-700 rounded p-2
+                            focus: outline-none
+                            focus:border-blue-400"
                         />
                     </div>
                     <button 
                         type='submit' 
-                        className="rounded bg-indigo-400 flex justify-center
-                                   hover:bg-indigo-900 text-white w-1/2 py-2">
+                        className="rounded bg-blue-400 flex justify-center
+                                   hover:bg-blue-900 text-white w-1/2 py-2">
                         <span>Entrar</span>
                     </button>
 
@@ -81,14 +87,15 @@ function Login() {
 
                    <p>
                         Ainda não tem uma conta?{' '}
-                        <Link to="/cadastro" className="text-indigo-800 hover:underline">
+                        <Link to="/cadastro" className="text-pink-500 hover:underline">
                             Cadastre-se
                         </Link>
                     </p>
                 </form>
-                 <div className="bg-[url('https://rollingstone.com.br/wp-content/uploads/mr_robot_serie_reproducao.jpg')] lg:block hidden bg-no-repeat 
-                            w-full min-h-screen bg-cover bg-center"
-                ></div>
+                 <div className="lg:block hidden w-full min-h-screen bg-center bg-no-repeat bg-contain bg-blue-200"
+                            style={{backgroundImage:`url(${logo})`}}
+                >                    
+                </div>
             </div>
         </>
     );

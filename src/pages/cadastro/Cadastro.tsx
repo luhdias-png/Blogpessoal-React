@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import type Usuario from "../../models/Usuario"
 import { cadastrarUsuario } from '../../services/Service'
+import logo from "../../assets/L&L.png"
 
 function Cadastro() {
 
@@ -66,10 +67,11 @@ function Cadastro() {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 h-screen 
-            place-items-center font-bold">
+            place-items-center font-bold ">
         <div
-          className="bg-[url('https://i.imgur.com/ZZFAmzo.jpg')] lg:block hidden bg-no-repeat 
-                    w-full min-h-screen bg-cover bg-center"
+          className="lg:block hidden bg-no-repeat
+                    w-full min-h-screen bg-cover bg-center bg-blue-200"
+          style={{ backgroundImage: `url(${logo})` }}
         ></div>
         <form className='flex justify-center items-center flex-col w-2/3 gap-3'
           onSubmit={cadastrarNovoUsuario}>
@@ -82,19 +84,24 @@ function Cadastro() {
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-slate-700 rounded p-2
+              focus:outline-none
+               focus:border-blue-400"
               value={usuario.nome}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuario</label>
+            <label htmlFor="usuario">Email</label>
             <input
               type="text"
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
-              className="border-2 border-slate-700 rounded p-2"
+              placeholder="email@email.com"
+              className="border-2 border-slate-700 rounded p-2
+                            focus:outline-none
+               focus:border-blue-400"
               value={usuario.usuario}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
@@ -106,7 +113,9 @@ function Cadastro() {
               id="foto"
               name="foto"
               placeholder="Foto"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-slate-700 rounded p-2
+                            focus:outline-none
+               focus:border-blue-400"
               value={usuario.foto}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
@@ -118,7 +127,9 @@ function Cadastro() {
               id="senha"
               name="senha"
               placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-slate-700 rounded p-2
+                            focus:outline-none
+               focus:border-blue-400"
               value={usuario.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
@@ -130,7 +141,9 @@ function Cadastro() {
               id="confirmarSenha"
               name="confirmarSenha"
               placeholder="Confirmar Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-slate-700 rounded p-2
+                            focus:outline-none
+               focus:border-blue-400"
               value={confirmarSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
             />
@@ -145,8 +158,8 @@ function Cadastro() {
             </button>
             <button
               type='submit'
-              className='rounded text-white bg-indigo-400 
-                           hover:bg-indigo-900 w-1/2 py-2
+              className='rounded text-white bg-blue-400 
+                           hover:bg-blue-900 w-1/2 py-2
                            flex justify-center'
             >
               {isLoading ?

@@ -20,7 +20,7 @@ function ListaPostagens() {
 
     useEffect(() => {
         if (token === '') {
-            toast.error('Você precisa estar logado', {
+            toast.error('Você precisa estar logado!!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -62,8 +62,8 @@ function ListaPostagens() {
             {isLoading && (
                 <div className="flex justify-center w-full my-8">
                     <SyncLoader
-                        color="#312e81"
-                        size={32}
+                        color="#0587f2"
+                        size={22}
                     />
                 </div>
             )}

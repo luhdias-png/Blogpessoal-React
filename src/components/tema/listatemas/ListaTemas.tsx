@@ -61,8 +61,8 @@ transition: Bounce,
             {isLoading && (
                 <div className="flex justify-center w-full my-8">
                     <SyncLoader
-                        color="#312e81"
-                        size={32}
+                        color="#0587f2"
+                        size={22}
                     />
                 </div>
             )}

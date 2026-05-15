@@ -165,7 +165,7 @@ transition: Bounce,
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />                
                 </div>
-                <button className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto flex justify-center" type="submit">
+                <button className="rounded text-slate-100 bg-blue-400 hover:bg-blue-800 w-1/2 py-2 mx-auto flex justify-center" type="submit">
                     {isLoading? <ClipLoader color="#ffffff" size={24}/> : <span>{id === undefined ? 'Cadastrar' : 'atualizar'}</span>}
                 </button>
             </form>

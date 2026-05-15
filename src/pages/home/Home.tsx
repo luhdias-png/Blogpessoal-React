@@ -1,39 +1,76 @@
+import { useContext } from "react"
 import ListaPostagens from "../../components/postagem/listapostagens/Listapostagem"
 import ModalPostagem from "../../components/postagem/modalpostagem/ModalPostagem"
+import { AuthContext } from "../../contexts/AuthContext"
 
 function Home() {
 
+    const { usuario } = useContext(AuthContext)
+
+
     return (
         <>
-            <div className="bg-indigo-900 flex justify-center">
-                <div className='container grid grid-cols-2 text-white'>
-                    <div className="flex flex-col gap-4 items-center justify-center py-4">
-                        <h2 className='text-5xl font-bold'>
-                            Seja Bem Vindo!
-                            
-                        </h2>
-                        <p className='text-xl'>
-                            Expresse aqui seus pensamentos e opniões
-                        </p>
+            <div className="
+                bg-blue-300
+                flex justify-center
+                min-h-[6vh] w-full py-10
+            ">
 
-                        <div className="flex justify-around gap-4">
-                            <div className='rounded text-white 
-                                            border-white border-solid border-2 py-2 px-4'
-                                >
-                                 <ModalPostagem />
-                            </div>
-                        </div>
-                    </div>
+                <div className="
+                    container mx-auto px-4
+                    flex flex-col md:flex-row
+                    items-center justify-start
+                    gap-50
+                ">
 
-                    <div className="flex justify-center ">
+                    <div className="flex justify-start">
                         <img
-                            src="https://i.imgur.com/fyfri1v.png"
-                            alt="Imagem Página Home"
-                            className='w-2/3'
+                            src={usuario.foto || "https://i.imgur.com/HeIi0wU.png"}
+                            alt="Imagem usuario"
+                            className="
+                                w-40 sm:w-52 lg:w-72
+                                opacity-80
+                                drop-shadow-xl
+                                rounded-2xl
+                                border-r-b-5
+                            "
                         />
                     </div>
+
+                    <div className="
+                        flex flex-col
+                        items-center
+                        justify-center
+                        gap-5
+                        text-center
+                        text-white
+                    ">
+
+
+                        <h2 className="
+                            text-3xl sm:text-4xl md:text-5xl
+                            font-bold
+                            drop-shadow-md
+                        ">
+                            Seja Bem Vindo! {usuario.nome.charAt(0).toUpperCase() + usuario.nome.slice(1)}
+                        </h2>
+
+                        <p className="
+                            text-base sm:text-lg md:text-xl
+                            text-white
+                        ">
+                            Expresse aqui seus pensamentos e opiniões
+                        </p>
+
+                        <div>
+                            <ModalPostagem />
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
+
             <ListaPostagens />
         </>
     )
